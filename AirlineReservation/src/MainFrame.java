@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Label;
 import java.awt.Font;
 import java.awt.Button;
@@ -20,23 +22,31 @@ import javax.swing.JRadioButton;
 import java.awt.Dimension;
 import java.sql.*;
 
-public class MainFrame {
-
+public class MainFrame
+{
+	private JPanel panel;
 	private JFrame frame;
 	private TextField fntxt;
 	private TextField lntxt;
+	private TextField pntxt;
+	private TextField untxt;
+	private TextField passtxt;
+	private TextField antxt;
+	private TextField cntxt;
+	private TextField dobtxt;
+	private JRadioButton mrb;
+	private JRadioButton frb;
+	private TextArea addtxt;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run() 
+			{
 				try {
 					MainFrame window = new MainFrame();
 					window.frame.setVisible(true);
-					
-					
+							
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +70,7 @@ public class MainFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(new Color(147, 112, 219));
 		panel.setBounds(59, 24, 893, 599);
 		frame.getContentPane().add(panel);
@@ -111,52 +121,6 @@ public class MainFrame {
 		label_1_7.setBounds(472, 355, 141, 49);
 		panel.add(label_1_7);
 		
-		Button registerbtn = new Button("Register");
-		registerbtn.setPreferredSize(new Dimension(100, 100));
-		registerbtn.addActionListener(new ActionListener() {
-			
-			
-			public void actionPerformed(ActionEvent e) 
-			{
-				
-				String fn,ln,add,dob,gen,cn,pno,ano,un,pass;
-				try
-				{
-					connectivity c=new connectivity();
-					PreparedStatement pst=c.cn.prepareStatement("insert into registration values (?,?,?,?,?,?,?,?,?,?)");
-					
-					
-					
-					fn=fntxt.getText();
-					ln=lntxt.getText();
-					add=addtxt.getText();
-					dob=lntxt.getText();
-					gen=lntxt.getText();
-					cn=lntxt.getText();
-					pno=lntxt.getText();
-					ano=lntxt.getText();
-					un=lntxt.getText();
-					pass=lntxt.getText();
-					
-					pst.setString(1,fn);
-					pst.setString(2,ln);
-					System.out.println("Record saved..");
-				}
-				catch(Exception ex)
-				{
-					System.out.println(ex);
-					
-				}
-				
-			}
-		});
-		registerbtn.setLocation(new Point(10, 0));
-		registerbtn.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
-		registerbtn.setBackground(Color.LIGHT_GRAY);
-		registerbtn.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		registerbtn.setBounds(245, 506, 417, 59);
-		panel.add(registerbtn);
-		
 		Label label_1_3_1 = new Label("Password");
 		label_1_3_1.setFont(new Font("Calibri", Font.BOLD, 15));
 		label_1_3_1.setBounds(472, 435, 141, 49);
@@ -168,10 +132,6 @@ public class MainFrame {
 		panel.add(label_1_3_2);
 		
 		TextField fntxt = new TextField();
-		fntxt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		fntxt.setName("fntxt");
 		fntxt.setFont(new Font("Calibri", Font.PLAIN, 14));
 		fntxt.setBounds(234, 107, 151, 36);
@@ -231,5 +191,71 @@ public class MainFrame {
 		frb.setFont(new Font("Calibri", Font.BOLD, 14));
 		frb.setBounds(327, 297, 69, 36);
 		panel.add(frb);
+		
+		Button registerbtn = new Button("Register");
+		registerbtn.setPreferredSize(new Dimension(100, 100));
+		registerbtn.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				String fn,ln,add,dob,gen,cn,pno,ano,un,pass;
+				try
+				{
+					connectivity c=new connectivity();
+					PreparedStatement pst=c.cn.prepareStatement("insert into registration values (?,?,?,?,?,?,?,?,?,?)");
+					
+					fn=fntxt.getText();
+					ln=lntxt.getText();
+					add=addtxt.getText();
+					dob=dobtxt.getText();
+					cn=cntxt.getText();
+					pno=pntxt.getText();
+					ano=antxt.getText();
+					un=untxt.getText();
+					pass=passtxt.getText();
+					
+					pst.setString(1,fn);
+					pst.setString(2,ln);
+					pst.setString(3,add);
+					pst.setString(4,dob);
+					if(mrb.isSelected())
+					{
+						pst.setString(5,"Male");
+					}
+					else
+					{
+						pst.setString(5,"Female");
+					}
+					pst.setString(6,cn);
+					pst.setString(7,pno);
+					pst.setString(8,ano);
+					pst.setString(9,un);
+					pst.setString(10,pass);
+					
+					pst.executeUpdate();
+					
+					JOptionPane.showMessageDialog(null,"Registration Done..");
+					c.cn.close();
+					frame.dispose();
+					
+				}
+				catch(Exception ex)
+				{
+					System.out.println(ex);
+					
+				}
+				
+			}
+		});
+		registerbtn.setLocation(new Point(10, 0));
+		registerbtn.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
+		registerbtn.setBackground(Color.LIGHT_GRAY);
+		registerbtn.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		registerbtn.setBounds(245, 506, 417, 59);
+		panel.add(registerbtn);
+		
+		
 	}
 }
