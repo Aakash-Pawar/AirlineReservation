@@ -135,7 +135,7 @@ public class TicketBooking extends JFrame {
 		btnNewButton.setBackground(Color.GREEN);
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton.setBounds(334, 441, 139, 23);
+		btnNewButton.setBounds(334, 433, 152, 31);
 		contentPane.add(btnNewButton);
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
