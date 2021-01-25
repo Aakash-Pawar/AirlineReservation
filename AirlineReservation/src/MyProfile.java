@@ -2,31 +2,21 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class LoginFrame {
+public class MyProfile {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginFrame window = new LoginFrame();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public LoginFrame() {
+	public MyProfile() {
 		initialize();
+		this.frame.setLocationRelativeTo(null);
 	}
 
 	/**
