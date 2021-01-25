@@ -25,7 +25,7 @@ import java.sql.*;
 public class MainFrame
 {
 	private JPanel panel;
-	private JFrame frame;
+	public JFrame frame;
 	private TextField fntxt;
 	private TextField lntxt;
 	private TextField pntxt;
@@ -38,22 +38,6 @@ public class MainFrame
 	private JRadioButton frb;
 	private TextArea addtxt;
 
-	public static void main(String[] args) 
-	{
-		EventQueue.invokeLater(new Runnable() {
-			public void run() 
-			{
-				try {
-					MainFrame window = new MainFrame();
-					window.frame.setVisible(true);
-							
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -61,6 +45,7 @@ public class MainFrame
 	public MainFrame() 
 	{
 		initialize();
+		this.frame.setLocationRelativeTo(null);
 	}
 	
 	public void initialize() 
@@ -71,7 +56,7 @@ public class MainFrame
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBackground(new Color(147, 112, 219));
+		panel.setBackground(new Color(153, 51, 102));
 		panel.setBounds(59, 24, 893, 599);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -237,6 +222,8 @@ public class MainFrame
 					pst.executeUpdate();
 					
 					JOptionPane.showMessageDialog(null,"Registration Done..");
+					Wlcome w=new Wlcome();
+					w.frame.setVisible(true);
 					c.cn.close();
 					frame.dispose();
 					
