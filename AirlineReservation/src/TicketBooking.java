@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class TicketBooking extends JFrame {
 
@@ -57,5 +58,9 @@ public class TicketBooking extends JFrame {
 		textField_1.setBounds(182, 140, 96, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(167, 253, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 }
